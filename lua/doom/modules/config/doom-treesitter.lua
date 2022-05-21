@@ -16,15 +16,20 @@ return function()
         table.insert(langs, "yaml")
         table.insert(langs, "toml")
       else
-        lang = lang:gsub("%s+%+lsp(%(%a+%))", ""):gsub("%s+%+lsp", ""):gsub("%s+%+debug", "")
-        table.insert(langs, lang)
+        -- WORKAROUND: don't install tree-sitter for typescript as it causes issues
+        -- for me on 0.5.1
+        lang = lang:gsub("%s+%+lsp(%(%a+%))", ""):gsub("%s+%+lsp", ""):gsub("%s+%+debug", ""):gsub("typescript", ""):gsub("norg", ""):gsub("%s+", "")
+        if lang ~= "" then
+            print ("installing for " .. lang)
+          table.insert(langs, lang)
+        end
       end
     end
 
     -- Add TSX parser if TypeScript is enabled
-    if has_value(langs, "typescript") then
-      table.insert(langs, "tsx")
-    end
+    -- if has_value(langs, "typescript") then
+    --   table.insert(langs, "tsx")
+    -- end
     return langs
   end
 
@@ -51,7 +56,7 @@ return function()
     autopairs = {
       enable = is_plugin_disabled("autopairs") and false or true,
     },
-    indent = { enable = true },
+    indent = { enable = false },
     playground = { enable = true },
     tree_docs = { enable = true },
     context_commentstring = { enable = true },
@@ -61,14 +66,14 @@ return function()
         "html",
         "javascript",
         "javascriptreact",
-        "typescript",
-        "typescriptreact",
         "svelte",
         "vue",
         "markdown",
       },
     },
   })
+        -- "typescript",
+        -- "typescriptreact",
 
   --  Check if user is using clang and notify that it has poor compatibility with treesitter
   --  WARN: 19/11/2021 | issues: #222, #246 clang compatibility could improve in future

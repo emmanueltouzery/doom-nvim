@@ -62,7 +62,7 @@ mappings.map(
 mappings.map(
   "n",
   "<leader>.",
-  "<cmd>Telescope file_browser<CR>",
+  "<cmd>Telescope file_browser hidden=true<CR>",
   opts,
   "Editor",
   "file_browser",
@@ -322,7 +322,7 @@ mappings.map(
 mappings.map(
   "n",
   "<leader>ff",
-  "<cmd>Telescope find_files<CR>",
+  "<cmd>Telescope find_files hidden=true<CR>",
   opts,
   "Editor",
   "find_files_alt",
@@ -592,7 +592,9 @@ if not config.doom.use_netrw then
   mappings.map(
     "n",
     "<leader>oe",
-    "<cmd>NvimTreeToggle<CR>",
+    "<cmd>lua toggle_tree()<cr>",
+    -- "<cmd>NvimTreeToggle<CR>",
+    -- "<cmd>NvimTreeToggle<CR>",
     opts,
     "Editor",
     "open_tree_alt",
@@ -856,3 +858,356 @@ mappings.map("n", "<leader>m", "<cmd>w<cr>", opts, "Save", "save_right", "Save m
 
 -- man pages
 mappings.map("n", "<leader>h", ":Man ", { silent = false }, "Man page", "man_page", "Man page")
+
+-- MINE
+mappings.map(
+  "n",
+  "<leader>op",
+  "<cmd>lua require'telescope'.extensions.project.project{ display_type = 'full' }<CR>",
+  opts,
+  "Editor",
+  "open_project",
+  "Open project"
+)
+mappings.map(
+  "n",
+  "<leader>*",
+  "<cmd>lua my_open_tele()<cr>",
+  opts,
+  "Editor",
+  "search_word",
+  "Search word under cursor, raw"
+)
+mappings.map(
+  "n",
+  "<leader>sr",
+  "<cmd>lua require('telescope').extensions.live_grep_raw.live_grep_raw()<cr>",
+  opts,
+  "Editor",
+  "search_text_raw",
+  "Search text raw"
+)
+
+mappings.map(
+  "n",
+  "<leader>gt",
+  "<cmd>lua require'agitator'.git_time_machine()<cr>",
+  opts,
+  "Editor",
+  "git_time_machine",
+  "Open project"
+)
+mappings.map(
+  "n",
+  "<leader>gB",
+  "<cmd>lua require'agitator'.git_blame_toggle()<cr>",
+  opts,
+  "Editor",
+  "git_blame",
+  "Open project"
+)
+mappings.map(
+  "n",
+  "<leader>gf",
+  "<cmd>lua require'agitator'.open_file_git_branch()<cr>",
+  opts,
+  "Editor",
+  "open_file_git_branch",
+  "Open project"
+)
+mappings.map(
+  "n",
+  "<leader>gd",
+  "<cmd>lua require'diffview'.open()<cr>",
+  opts,
+  "Editor",
+  "diffview",
+  "Open project"
+)
+mappings.map(
+  "n",
+  "<leader>gL",
+  "<cmd>lua require'diffview'.file_history('.')<cr>",
+  opts,
+  "Editor",
+  "project_history",
+  "Open project"
+)
+mappings.map(
+  "n",
+  "<leader>gT",
+  "<cmd>lua require'diffview'.file_history()<cr>",
+  opts,
+  "Editor",
+  "file_history",
+  "Open project"
+)
+mappings.map(
+  "n",
+  "<leader>gg",
+  "<cmd>Neogit<cr>",
+  opts,
+  "Editor",
+  "neogit",
+  "Open project"
+)
+
+mappings.map(
+  "n",
+  "<leader>?",
+  --":b#<bar>bd#<CR>",
+  ":Cheat40<cr>",
+  opts,
+  "Editor",
+  "help",
+  "help"
+)
+
+-- https://stackoverflow.com/a/19619038/516188
+-- if that doesn't cut it, consider https://github.com/qpkorr/vim-bufkill
+-- and check https://www.reddit.com/r/vim/comments/m6jl0b/i_made_a_plugin_a_replacement_for_bdelete_that/
+mappings.map(
+  "n",
+  "<leader>bd",
+  --":b#<bar>bd#<CR>",
+  ":BD<cr>",
+  opts,
+  "Editor",
+  "delete_buffer",
+  "Delete buffer"
+)
+
+mappings.map(
+  "n",
+  "<leader>td",
+  ":tabc<cr>",
+  opts,
+  "Editor",
+  "delete_tab",
+  "Delete tab"
+)
+
+mappings.map(
+  "n",
+  "<leader>sS",
+  "<cmd>Telescope lsp_workspace_symbols<CR>",
+  opts,
+  "LSP",
+  "lsp_w_symbols",
+  "Goto workspace symbol"
+)
+
+ vim.api.nvim_exec([[
+function! ToggleQuickFix()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+        copen
+    else
+        cclose
+    endif
+endfunction
+ ]], false)
+
+mappings.map(
+  "n",
+  "<leader>oq",
+  ":call ToggleQuickFix()<cr>",
+  opts,
+  "Editor",
+  "toggle_quickfix",
+  "Toggle quickfix"
+)
+
+mappings.map(
+  "n",
+  "<leader>clf",
+  ":TroubleToggle lsp_references<cr>",
+  opts,
+  "Editor",
+  "toggle_lsp_refs",
+  "Toggle lsp references"
+)
+
+mappings.map(
+  "n",
+  "<leader>gG",
+  ":lua require('diffview').open()<cr>",
+  opts,
+  "Editor",
+  "git_diff_twoway",
+  "Git two-way diff"
+)
+
+mappings.map(
+  "n",
+  "<leader>fp",
+  -- ':let @+ = expand("%")<cr>',
+  ':lua copy_to_clipboard(cur_file_path_in_project())<cr>',
+  opts,
+  "Editor",
+  "copy_file_path",
+  "Copy file path"
+)
+
+mappings.map(
+  "n",
+  "<leader>fP",
+  ':let @+ = expand("%:p")<cr>',
+  opts,
+  "Editor",
+  "copy_file_full_path",
+  "Copy file full path"
+)
+
+mappings.map(
+  "n",
+  "<leader>cf",
+  ":Format<cr>",
+  opts,
+  "Editor",
+  "code_format",
+  "Code format"
+)
+mappings.map(
+  "n",
+  "<leader>cm",
+  ":Glow<cr>",
+  opts,
+  "Editor",
+  "markdown_preview",
+  "Markdown preview"
+)
+mappings.map(
+  "n",
+  "<leader>wr",
+  "<C-w>r",
+  opts,
+  "Editor",
+  "window_rotate",
+  "Window rotate"
+)
+mappings.map(
+  "n",
+  "<leader>wm",
+  "<C-w>o",
+  opts,
+  "Editor",
+  "window_maximize",
+  "Window maximize"
+)
+mappings.map(
+  "n",
+  "<leader>tw",
+  ":set wrap! linebreak<cr>",
+  opts,
+  "Editor",
+  "toggle_linebreak",
+  "toggle_linebreak"
+)
+mappings.map(
+  "n",
+  "<leader>gm",
+  ":MergetoolToggle<cr>",
+  opts,
+  "Editor",
+  "toggle_gitmerge",
+  "toggle_gitmerge"
+)
+mappings.map(
+  "n",
+  "<leader>gv",
+  ":lua ShowCommitAtLine()<cr>",
+  opts,
+  "Editor",
+  "view_commit",
+  "view_commit"
+)
+mappings.map(
+  "n",
+  "<leader>fW",
+  ":noautocmd w<cr>",
+  opts,
+  "Editor",
+  "save_noindent",
+  "save_noindent"
+)
+mappings.map(
+  "n",
+  "<leader>ctf",
+  ":TestFile -strategy=dispatch<cr>",
+  opts,
+  "Editor",
+  "test file",
+  "test file"
+)
+mappings.map(
+  "n",
+  "<leader>ctn",
+  ":TestNearest -strategy=dispatch<cr>",
+  opts,
+  "Editor",
+  "test nearest",
+  "test nearest"
+)
+mappings.map(
+  "n",
+  "<leader>ctl",
+  ":TestLast -strategy=dispatch<cr>",
+  opts,
+  "Editor",
+  "test last",
+  "test last"
+)
+mappings.map(
+  "n",
+  "<leader>cta",
+  ":TestSuite -strategy=dispatch<cr>",
+  opts,
+  "Editor",
+  "test all",
+  "test all"
+)
+mappings.map(
+  "n",
+  "<leader>cqs",
+  ":lua select_current_qf(false)<cr>",
+  opts,
+  "Editor",
+  "quickfix select current",
+  "quickfix select current"
+)
+mappings.map(
+  "n",
+  "<leader>cqv",
+  ":lua select_current_qf(true)<cr>",
+  opts,
+  "Editor",
+  "quickfix view & select current",
+  "quickfix view & select current"
+)
+mappings.map(
+  "n",
+  "<leader>gY",
+  ":lua copy_file_line()<cr>",
+  opts,
+  "Editor",
+  "Copy line and line number",
+  "Copy line and line number"
+)
+mappings.map(
+  "v",
+  "<leader>gY",
+  ":lua copy_file_line_sel()<cr>",
+  opts,
+  "Editor",
+  "Copy line and line number",
+  "Copy line and line number"
+)
+mappings.map(
+  "n",
+  "<leader>oc",
+  ":lua goto_fileline()<cr>",
+  opts,
+  "Editor",
+  "Open code (file+line)",
+  "Open code (file+line)"
+)

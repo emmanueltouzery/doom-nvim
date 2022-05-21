@@ -4,7 +4,7 @@ local mappings = require("doom.utils.mappings")
 local opts = { silent = true }
 
 -- TAB to cycle buffers too, why not?
-mappings.map("n", "<Tab>", ":bnext<CR>", opts, "Movement", "cycle_next_buffer", "Goto next buffer")
+-- mappings.map("n", "<Tab>", ":bnext<CR>", opts, "Movement", "cycle_next_buffer", "Goto next buffer")
 mappings.map(
   "n",
   "<S-Tab>",
@@ -164,4 +164,13 @@ mappings.map(
   "Window",
   "resize_left",
   "Resize window (increase height)"
+)
+mappings.map(
+  "n",
+  "<leader><tab>",
+  '<cmd>e #<CR>',
+  opts,
+  "Buffer",
+  "switch_buffer2",
+  "Switch buffer 2"
 )

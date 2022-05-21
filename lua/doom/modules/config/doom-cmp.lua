@@ -83,7 +83,7 @@ return function()
       ["<C-e>"] = cmp.mapping.close(),
       -- ["<ESC>"] = cmp.mapping.close(),
       ["<CR>"] = cmp.mapping.confirm({
-        behavior = cmp.ConfirmBehavior.Replace,
+        behavior = cmp.ConfirmBehavior.Insert,
         select = true,
       }),
       ["<Tab>"] = cmp.mapping(function(fallback)

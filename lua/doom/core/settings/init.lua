@@ -30,7 +30,7 @@ settings.load_default_options = function()
   vim.opt.inccommand = "split"
   vim.opt.path = "**"
   vim.opt.signcolumn = "auto:2-3"
-  vim.opt.foldcolumn = "auto:9"
+  -- vim.opt.foldcolumn = "auto:9"
 
   vim.opt.fillchars = {
     vert = "▕",

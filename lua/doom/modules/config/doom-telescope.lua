@@ -6,6 +6,7 @@ return function()
 
   telescope.setup({
     defaults = {
+      path_display = {'truncate'},
       find_command = {
         "rg",
         "--no-heading",
@@ -18,7 +19,8 @@ return function()
       selection_strategy = "reset",
       sorting_strategy = "descending",
       layout_strategy = "horizontal",
-      prompt_prefix = "   ",
+      -- prompt_prefix = "   ",
+      prompt_prefix = "", -- work around bugs https://github.com/nvim-telescope/telescope.nvim/issues/1251 https://github.com/nvim-telescope/telescope.nvim/issues/567
       selection_caret = " ",
       layout_config = {
         width = 0.75,
@@ -62,6 +64,8 @@ return function()
           ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
           ["<Leader>f"] = actions.close, -- works like a toggle, sometimes can be buggy
           ["<CR>"] = actions.select_default + actions.center,
+          ["<C-n>"] = actions.cycle_history_next,
+          ["<C-p>"] = actions.cycle_history_prev,
         },
         n = {
           ["<C-j>"] = actions.move_selection_next,

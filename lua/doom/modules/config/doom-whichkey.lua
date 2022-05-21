@@ -72,6 +72,8 @@ return function()
     ["."] = { "Browse files" },
     [","] = { "Switch buffer" },
     ["/"] = { "Search a word" },
+    ["*"] = { "Search word under cursor" }, -- mine
+    ["?"] = { "Cheat40" }, -- mine
     [":"] = { "Command history" },
     ["h"] = { "Manpage" },
     ["m"] = { "Save" },
@@ -86,6 +88,8 @@ return function()
       ["g"] = { "Goto buffer" },
       ["["] = { "Previous buffer" },
       ["p"] = { "Previous buffer" },
+      -- mine
+      ["d"] = { "Delete buffer" },
     },
     ["c"] = {
       name = "+code",
@@ -96,6 +100,10 @@ return function()
       ["h"] = {
         "Run restclient on the line that the cursor is currently on",
       },
+      -- mine
+      ["f"] = { "Format code" },
+      ["m"] = { "Preview markdown" },
+      -- end mine
       ["d"] = {
         name = "+debug",
         ["b"] = { "Toggle breakpoint on current line" },
@@ -112,6 +120,21 @@ return function()
         ["l"] = { "Show line diagnostics" },
         ["q"] = { "Diagnostics into location list" },
         ["r"] = { "Rename symbol under cursor" },
+        -- mine
+        ["f"] = { "LSP reFerences" },
+      },
+      -- mine
+      ["t"] = {
+        name = '+test',
+        ["f"] = { "Test file" },
+        ["n"] = { "Test nearest" },
+        ["l"] = { "Test last" },
+        ["a"] = { "Test all" },
+      },
+      ["q"] = {
+        name = '+quickfix',
+        ["s"] = { "Select current" },
+        ["v"] = { "View current" },
       },
     },
     ["d"] = {
@@ -135,6 +158,10 @@ return function()
       ["r"] = { "Recently opened files" },
       ["w"] = { "Write file with sudo permissions" },
       ["R"] = { "Re-open file with sudo permissions" },
+      -- mine
+      ["p"] = { "Copy file relative path" },
+      ["P"] = { "Copy file full path" },
+      ["W"] = { "Save without indenting" },
     },
     ["g"] = {
       name = "+git",
@@ -150,6 +177,18 @@ return function()
       ["b"] = { "Blame line" },
       ["B"] = { "Branches" },
       ["c"] = { "Commits" },
+      -- mine
+      ["t"] = { "Agitator Time machine" },
+      ["B"] = { "Agitator Blame" },
+      ["f"] = { "Agitator open file branch" },
+      ["d"] = { "Diffview" },
+      ["G"] = { "Diffview" },
+      ["L"] = { "Diffview history" },
+      ["T"] = { "Diffview file history" },
+      ["g"] = { "Neogit" },
+      ["m"] = { "Git merge" },
+      ["v"] = { "View commit for cur line" },
+      ["y"] = { "Copy repo web URL" },
     },
     ["p"] = {
       name = "+plugins",
@@ -173,6 +212,9 @@ return function()
       ["s"] = { "Goto symbol" },
       ["h"] = { "Command history" },
       ["m"] = { "Jump to mark" },
+      -- mine
+      ["r"] = { "Raw" },
+      ["S"] = { "Workspace symbols" },
     },
     ["t"] = {
       name = "+tweak",
@@ -184,6 +226,9 @@ return function()
       -- ["p"] = { "autopairs" }, -- moved below as conditional
       ["s"] = { "spell" },
       ["x"] = { "syntax/treesetter" },
+      -- mine
+      ["d"] = { "Tab delete" },
+      ["w"] = { "Toggle Linebreak" },
     },
     ["w"] = {
       name = "+windows",
@@ -203,6 +248,9 @@ return function()
       ["="] = { "Balance window" },
       ["s"] = { "Split window below" },
       ["v"] = { "Split window right" },
+      -- mine
+      ["r"] = { "Window Rotate" }, 
+      ["m"] = { "Window Maximize" }, 
     },
     ["o"] = {
       name = "+open",
@@ -213,6 +261,10 @@ return function()
       ["m"] = { "Minimap" },
       ["s"] = { "Symbols" },
       ["t"] = { "Terminal" },
+      -- MINE
+      ["p"] = { "Project" },
+      ["q"] = { "Quickfix" },
+      ["c"] = { "Code file line" },
     },
     ["j"] = {
       name = "+jumps",

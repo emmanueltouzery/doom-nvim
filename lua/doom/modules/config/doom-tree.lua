@@ -32,6 +32,11 @@ return function()
   -- 1000 means the tree can be refresh once per 1000ms.
   vim.g.nvim_tree_refresh_wait = 500
 
+  -- trying to get the same numbers as vim-choosewin.
+  -- there i get digits, but since that one includes the nvim-tree
+  -- window, i start at 2 (since for vim-choosewin, the nvim-tree window is 1)
+  vim.g.nvim_tree_window_picker_chars = '234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
   -- Ignored filetypes and buffers when window picker is enabled
   vim.g.nvim_tree_window_picker_exclude = {
     filetype = {
@@ -143,32 +148,43 @@ return function()
       mappings = {
         -- custom only false will merge the list with the default mappings
         -- if true, it will only use your list to set the mappings
-        custom_only = false,
+        custom_only = true, -- MY CHANGE
         -- list of mappings to set on the tree manually
         list = {
-          { key = { "o", "<2-LeftMouse>" }, cb = tree_cb("edit") },
-          { key = { "<CR>", "<2-RightMouse>", "<C-]>" }, cb = tree_cb("cd") },
-          { key = "<C-v>", cb = tree_cb("vsplit") },
-          { key = "<C-x>", cb = tree_cb("split") },
-          { key = "<C-t>", cb = tree_cb("tabnew") },
-          { key = "<BS>", cb = tree_cb("close_node") },
-          { key = "<S-CR>", cb = tree_cb("close_node") },
-          { key = "<Tab>", cb = tree_cb("preview") },
-          { key = "I", cb = tree_cb("toggle_ignored") },
-          { key = "H", cb = tree_cb("toggle_dotfiles") },
-          { key = "R", cb = tree_cb("refresh") },
-          { key = "a", cb = tree_cb("create") },
-          { key = "d", cb = tree_cb("remove") },
-          { key = "r", cb = tree_cb("rename") },
-          { key = "<C-r>", cb = tree_cb("full_rename") },
-          { key = "x", cb = tree_cb("cut") },
-          { key = "c", cb = tree_cb("copy") },
-          { key = "p", cb = tree_cb("paste") },
-          { key = "[c", cb = tree_cb("prev_git_item") },
-          { key = "]c", cb = tree_cb("next_git_item") },
-          { key = "-", cb = tree_cb("dir_up") },
-          { key = "q", cb = tree_cb("close") },
-          { key = "g?", cb = tree_cb("toggle_help") },
+            { key = {"<CR>", "o", "<2-LeftMouse>"}, cb = tree_cb("edit") },
+            { key = {"<2-RightMouse>", "<C-]>"},    cb = tree_cb("cd") },
+            { key = "<C-v>",                        cb = tree_cb("vsplit") },
+            { key = "<C-x>",                        cb = tree_cb("split") },
+            { key = "<C-t>",                        cb = tree_cb("tabnew") },
+            { key = "<",                            cb = tree_cb("prev_sibling") },
+            { key = ">",                            cb = tree_cb("next_sibling") },
+            { key = "P",                            cb = tree_cb("parent_node") },
+            { key = "<BS>",                         cb = tree_cb("close_node") },
+            { key = "<Tab>",                        cb = tree_cb("preview") },
+            { key = "K",                            cb = tree_cb("first_sibling") },
+            { key = "J",                            cb = tree_cb("last_sibling") },
+            { key = "I",                            cb = tree_cb("toggle_ignored") },
+            { key = "H",                            cb = tree_cb("toggle_dotfiles") },
+            { key = "R",                            cb = tree_cb("refresh") },
+            { key = "a",                            cb = tree_cb("create") },
+            { key = "d",                            cb = tree_cb("remove") },
+            { key = "D",                            cb = tree_cb("trash") },
+            { key = "r",                            cb = tree_cb("rename") },
+            { key = "<C-r>",                        cb = tree_cb("full_rename") },
+            { key = "x",                            cb = tree_cb("cut") },
+            { key = "c",                            cb = tree_cb("copy") },
+            { key = "p",                            cb = tree_cb("paste") },
+            { key = "y",                            cb = tree_cb("copy_name") },
+            { key = "Y",                            cb = tree_cb("copy_path") },
+            { key = "gy",                           cb = tree_cb("copy_absolute_path") },
+            { key = "[c",                           cb = tree_cb("prev_git_item") },
+            { key = "]c",                           cb = tree_cb("next_git_item") },
+            { key = "s",                            cb = tree_cb("system_open") },
+            { key = "q",                            cb = tree_cb("close") },
+            { key = "g?",                           cb = tree_cb("toggle_help") },
+            -- I want - for vim-choosewin
+            { key = "U", cb = tree_cb("dir_up") },
+            -- { key = "-",                            cb = tree_cb("dir_up") },
         },
       },
     },

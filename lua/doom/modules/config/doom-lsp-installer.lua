@@ -92,8 +92,13 @@ return function()
     },
   }
 
+  -- https://github.com/jose-elias-alvarez/null-ls.nvim/discussions/244
+  -- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts
+  local on_attach -- = function(client)
+  --     client.resolved_capabilities.document_formatting = false
+  --     client.resolved_capabilities.document_range_formatting = false
+  -- end
   --- Intelligent highlighting of word under cursor
-  local on_attach
   if not is_plugin_disabled("illuminated") and packer_plugins["vim-illuminate"] then
     on_attach = function(client)
       require("illuminate").on_attach(client)
@@ -165,6 +170,21 @@ return function()
           end
         end
       end
+
+local null_ls = require("null-ls")
+null_ls.config({ 
+    -- debug=true, 
+    sources = {
+    null_ls.builtins.diagnostics.eslint,
+    -- null_ls.builtins.diagnostics.credo,
+    -- null_ls.builtins.diagnostics.shellcheck,
+    -- null_ls.builtins.formatting.prettier,
+    -- null_ls.builtins.formatting.rustfmt,
+    -- null_ls.builtins.formatting.mix,
+    -- null_ls.builtins.formatting.eslint,
+}})
+
+        require("lspconfig")["null-ls"].setup({})
     end
 
     -- Flatten the array of default servers.

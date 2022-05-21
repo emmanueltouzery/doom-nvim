@@ -154,6 +154,7 @@ packer.startup(function(use)
       "NvimTreeClipboard",
       "NvimTreeClose",
       "NvimTreeFindFile",
+      "NvimTreeFindFileToggle",
       "NvimTreeOpen",
       "NvimTreeRefresh",
       "NvimTreeToggle",
@@ -173,8 +174,10 @@ packer.startup(function(use)
   -- can be disabled to use your own statusline
   local disabled_statusline = is_plugin_disabled("statusline")
   use({
-    "NTBBloodbath/galaxyline.nvim",
-    commit = pin_commit("7b812cfddfcac7d9031e2f8e03f2b71fe8b2558d"),
+    -- "NTBBloodbath/galaxyline.nvim",
+    -- commit = pin_commit("7b812cfddfcac7d9031e2f8e03f2b71fe8b2558d"),
+    "emmanueltouzery/galaxyline.nvim",
+    branch = "doom-branch-patched",
     config = require("doom.modules.config.doom-eviline"),
     disable = disabled_statusline,
   })
@@ -349,8 +352,8 @@ packer.startup(function(use)
   -- Neogit
   local disabled_neogit = is_plugin_disabled("neogit")
   use({
-    "TimUntersberger/neogit",
-    commit = pin_commit("ab772d21b108127ad6c703f7457c279f5817f379"),
+    "emmanueltouzery/neogit",
+    branch = "delete_path",
     config = function()
       require("neogit").setup({})
     end,
