@@ -813,7 +813,7 @@ mappings.map(
 mappings.map(
   "n",
   "<leader>cll",
-  '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ focusable = false, border = "single" })<CR>',
+  '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<CR>',
   opts,
   "LSP",
   "line_diagnostic",
