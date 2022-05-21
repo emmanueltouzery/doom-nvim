@@ -62,7 +62,7 @@ mappings.map(
 mappings.map(
   "n",
   "<C-p>",
-  ":lua vim.lsp.diagnostic.goto_prev()<CR>",
+  ":lua vim.diagnostic.goto_prev()<CR>",
   opts,
   "LSP",
   "prev_diagnostic",
@@ -72,7 +72,7 @@ mappings.map(
 mappings.map(
   "n",
   "<C-n>",
-  ":lua vim.lsp.diagnostic.goto_next()<CR>",
+  ":lua vim.diagnostic.goto_next()<CR>",
   opts,
   "LSP",
   "next_diagnostic",

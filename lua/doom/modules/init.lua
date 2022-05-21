@@ -74,17 +74,17 @@ packer.startup(function(use)
   })
   use({
     "JoosepAlviste/nvim-ts-context-commentstring",
-    commit = pin_commit("9f5e422e1030e7073e593ad32c5354aa0bcb0176"),
+    commit = pin_commit("88343753dbe81c227a1c1fd2c8d764afb8d36269"),
     after = "nvim-treesitter",
   })
   use({
     "nvim-treesitter/nvim-tree-docs",
-    commit = pin_commit("15135bd18c8f0c4d67dd1b36d3b2cd64579aab6f"),
+    commit = pin_commit("5db023d783da1e55339e5e25caaf72a59597e626"),
     after = "nvim-treesitter",
   })
   use({
     "windwp/nvim-ts-autotag",
-    commit = pin_commit("80d427af7b898768c8d8538663d52dee133da86f"),
+    commit = pin_commit("044a05c4c51051326900a53ba98fddacd15fea22"),
     after = "nvim-treesitter",
   })
 
