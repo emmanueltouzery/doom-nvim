@@ -187,7 +187,7 @@ packer.startup(function(use)
   local disabled_tabline = is_plugin_disabled("tabline")
   use({
     "akinsho/bufferline.nvim",
-    commit = pin_commit("463637a3ac86dcaacbcd47aa608f53aaad749696"),
+    commit = pin_commit("82e3598363402cc8f0d1e1d8f55c744de8f4bb92"),
     config = require("doom.modules.config.doom-bufferline"),
     disable = disabled_tabline,
     event = "BufWinEnter",
@@ -240,7 +240,7 @@ packer.startup(function(use)
   local disabled_whichkey = is_plugin_disabled("which-key")
   use({
     "folke/which-key.nvim",
-    commit = pin_commit("d3032b6d3e0adb667975170f626cb693bfc66baa"),
+    commit = pin_commit("bd4411a2ed4dd8bb69c125e339d837028a6eea71"),
     opt = true,
     config = require("doom.modules.config.doom-whichkey"),
     disable = disabled_whichkey,
@@ -379,7 +379,7 @@ packer.startup(function(use)
   -- Built-in LSP Config
   use({
     "neovim/nvim-lspconfig",
-    commit = pin_commit("1cb8583d186d28f2959eac5d74a74dc745fae099"),
+    commit = pin_commit("9e6bcf5a8915e8423d5cc7f82c5069c11272184d"),
     config = require("doom.modules.config.doom-lspconfig"),
     disable = disabled_lsp,
   })
@@ -470,7 +470,7 @@ packer.startup(function(use)
   -- Setup for Lua development in Neovim
   use({
     "folke/lua-dev.nvim",
-    commit = pin_commit("6a7abb62af1b6a4411a3f5ea5cf0cb6b47878cc0"),
+    commit = pin_commit("f5c31936fe06fcbeb59b98f69f74f9c2f91abaec"),
     disable = disabled_lsp,
     module = "lua-dev",
   })
@@ -633,7 +633,7 @@ packer.startup(function(use)
   local disabled_todo = is_plugin_disabled("todo_comments")
   use({
     "folke/todo-comments.nvim",
-    commit = pin_commit("9983edc5ef38c7a035c17c85f60ee13dbd75dcc8"),
+    commit = pin_commit("98b1ebf198836bdc226c0562b9f906584e6c400e"),
     requires = "nvim-lua/plenary.nvim",
     config = require("doom.modules.config.doom-todo"),
     disable = disabled_todo,

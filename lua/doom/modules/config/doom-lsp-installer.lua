@@ -171,20 +171,21 @@ return function()
         end
       end
 
-local null_ls = require("null-ls")
-null_ls.config({ 
-    -- debug=true, 
-    sources = {
-    null_ls.builtins.diagnostics.eslint,
-    -- null_ls.builtins.diagnostics.credo,
-    -- null_ls.builtins.diagnostics.shellcheck,
-    -- null_ls.builtins.formatting.prettier,
-    -- null_ls.builtins.formatting.rustfmt,
-    -- null_ls.builtins.formatting.mix,
-    -- null_ls.builtins.formatting.eslint,
-}})
+-- require("null-ls").setup({
+--     sources = {
+--         -- require("null-ls").builtins.formatting.stylua,
+--         require("null-ls").builtins.diagnostics.eslint,
+--         -- require("null-ls").builtins.completion.spell,
+--         -- null_ls.builtins.diagnostics.credo,
+--         -- null_ls.builtins.diagnostics.shellcheck,
+--         -- null_ls.builtins.formatting.prettier,
+--         -- null_ls.builtins.formatting.rustfmt,
+--         -- null_ls.builtins.formatting.mix,
+--         -- null_ls.builtins.formatting.eslint,
+--     },
+-- })
 
-        require("lspconfig")["null-ls"].setup({})
+        -- require("lspconfig")["null-ls"].setup({})
     end
 
     -- Flatten the array of default servers.
