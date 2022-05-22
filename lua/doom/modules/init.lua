@@ -147,7 +147,7 @@ packer.startup(function(use)
     and require("doom.core.config").config.doom.use_netrw
   use({
     "kyazdani42/nvim-tree.lua",
-    commit = pin_commit("5d8453dfbd34ab00cb3e8ce39660f9a54cdd35f3"),
+    commit = pin_commit("7b0ebf8b17d85abecccfd1c924090a28d5935b88"),
     requires = "nvim-web-devicons",
     config = require("doom.modules.config.doom-tree"),
     disable = disabled_tree,

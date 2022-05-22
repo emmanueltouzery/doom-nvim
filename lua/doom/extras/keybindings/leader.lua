@@ -592,9 +592,8 @@ if not config.doom.use_netrw then
   mappings.map(
     "n",
     "<leader>oe",
-    "<cmd>lua toggle_tree()<cr>",
-    -- "<cmd>NvimTreeToggle<CR>",
-    -- "<cmd>NvimTreeToggle<CR>",
+    -- "<cmd>lua toggle_tree()<cr>",
+    "<cmd>NvimTreeToggle<CR>",
     opts,
     "Editor",
     "open_tree_alt",
