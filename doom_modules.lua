@@ -21,7 +21,7 @@ M.modules = {
     -- "doom-themes",     -- Additional doom emacs' colorschemes
     -- "indentlines",     -- Show indent lines
     -- "show_registers",  -- popup that shows register contents
-    "statusline",         -- Statusline
+    -- "statusline",         -- Statusline
     "tabline",            -- Tabline, shows your buffers list at top
     "which-key",          -- Keybindings popup menu like Emacs' guide-key
     -- "zen",             -- Distraction free environment
@@ -39,31 +39,31 @@ M.modules = {
     "dap",                -- Debug Adapter Protocol
     -- "editorconfig",    -- EditorConfig support for Neovim
     "explorer",           -- Tree explorer
-    "formatter",          -- File formatting
+    -- "formatter",          -- File formatting
     "gitsigns",           -- Git signs
     "kommentary",         -- Comments plugin
-    -- "linter",          -- Asynchronous linter, see errors in your code on the fly
+    "linter",          -- Asynchronous linter, see errors in your code on the fly
     "lsp",                -- Language Server Protocols
     -- "minimap",         -- Code minimap, requires github.com/wfxr/code-minimap
     -- "ranger",          -- Ranger File Browser, requires ranger file browser
     "snippets",           -- Code snippets
-    -- "symbols",         -- LSP symbols and tags
+    "symbols",         -- LSP symbols and tags
     "telescope",          -- Highly extendable fuzzy finder over lists
-    -- "terminal",        -- Terminal for Neovim (NOTE: needed for runner and compiler)
-    -- "trouble",         -- A pretty list to help you solve all the trouble your code is causing.
+    "terminal",        -- Terminal for Neovim (NOTE: needed for runner and compiler)
+    "trouble",         -- A pretty list to help you solve all the trouble your code is causing.
   },
   langs = {
     -- To enable the language server for a language just add the +lsp flag
     -- at the end, e.g. 'rust +lsp'. This will install the rust TreeSitter
     -- parser and rust-analyzer
     --
-    -- "css",             -- CSS support
-    -- "html",            -- HTML support
-    -- "javascript",      -- JavaScript support
-    -- "typescript",      -- TypeScript support
+    "css",             -- CSS support
+    "html",            -- HTML support
+    "javascript +lsp",      -- JavaScript support
+    "typescript +lsp",      -- TypeScript support
 
-    -- "bash",            -- The terminal gods language
-    -- "elixir",          -- Build scalable and maintainable software
+    "bash +lsp",            -- The terminal gods language
+    "elixir +lsp(elixirls)",          -- Build scalable and maintainable software
     "lua",                -- Support for our gods language
     -- "python +lsp",     -- Python support + lsp
     -- "ruby",            -- Look ma, I love the gems!
@@ -73,20 +73,20 @@ M.modules = {
     -- "go",              -- Hello, gopher
     -- "haskell",         -- Because Functional programming is fun, isn't it?
     -- "java",            -- Java support
-    -- "rust +lsp",       -- Let's get rusty!
+    "rust +lsp",       -- Let's get rusty!
     -- "scala",           -- Java, but good
 
     -- "comment",         -- Better annotations and comments
-    -- "config",          -- Configuration files (JSON, YAML, TOML)
-    -- "dockerfile",      -- Do you like containers, right?
+    "config",          -- Configuration files (JSON, YAML, TOML)
+    "dockerfile",      -- Do you like containers, right?
   },
   utilities = {
     -- "lazygit",         -- LazyGit integration for Neovim, requires LazyGit
-    -- "neogit",          -- Magit for Neovim
+    "neogit",          -- Magit for Neovim
     "range-highlight",    -- Hightlights ranges you have entered in commandline
-    -- "suda",            -- Write and read files without sudo permissions
+    "suda",            -- Write and read files without sudo permissions
     -- "superman",        -- Read Unix man pages faster than a speeding bullet!
-    -- "todo_comments",   -- Highlight, list and search todo comments in your projects
+    "todo_comments",   -- Highlight, list and search todo comments in your projects
   },
   web = {
     -- "colorizer",       -- Fastest colorizer for Neovim
