@@ -295,6 +295,8 @@ function emmanuel_init()
     -- vim.cmd("let g:yankstack_yank_keys = ['c', 'C', 'd', 'D', 's', 'S', 'x', 'X', 'y', 'Y']")
     -- drop s and S due to lightspeed
     vim.cmd("let g:yankstack_yank_keys = ['c', 'C', 'd', 'D', 'x', 'X', 'y', 'Y']")
+
+  if packer_plugins and packer_plugins["neogit"] then
     require('neogit').setup {
         -- disable_context_highlighting = true,
         signs = {
@@ -304,21 +306,30 @@ function emmanuel_init()
             hunk = { "", "" },
         }
     }
+  end
+
+  if packer_plugins and packer_plugins["todo-comments"] then
     require("todo-comments").setup {
         highlight = {
             pattern = {[[\s*\/\/.*<(KEYWORDS)\s*]], [[\s*--.*<(KEYWORDS)\s*]], [[\s*#.*<(KEYWORDS)\s*]]},
         }
     }
+  end
 
+  if packer_plugins and packer_plugins["lightspeed"] then
     require'lightspeed'.setup {
         ignore_case = true,
     }
+  end
 
+  if packer_plugins and packer_plugins["kommentary"] then
     require('kommentary.config').configure_language("default", {
         prefer_single_line_comments = true,
     })
+  end
     -- require('galaxyline').inactive_window_shortline = false
 
+  if packer_plugins and packer_plugins["diffview"] then
     local cb = require'diffview.config'.diffview_callback
     require('diffview').setup {
         -- had to copy the entire diffview keybindings only to
@@ -390,7 +401,9 @@ function emmanuel_init()
         }
     }
     require('diffview').init()
+  end
 
+  if packer_plugins and packer_plugins["telescope"] then
     require("telescope").setup {
         pickers = {
             buffers = {
@@ -409,6 +422,7 @@ function emmanuel_init()
 
     require('telescope').load_extension('fzf')
     require'telescope'.load_extension('project')
+  end
 
     vim.opt.fillchars = vim.opt.fillchars + 'diff:╱'
 
@@ -468,6 +482,7 @@ function emmanuel_init()
     vim.cmd("nmap <expr> da &diff? ':lua diffget_and_keep_after()<cr>' : 'da'")
 
     -- formatter, mhartington/formatter.nvim START
+  if packer_plugins and packer_plugins["formatter"] then
     require('formatter').setup({
         filetype = {
             rust = {
@@ -530,6 +545,7 @@ function emmanuel_init()
             },
         }
     })
+  end
 
     -- absolutely ABOMINABLE HACK to avoid losing cursor position when reindent
     -- occurs and i have the same file in multiple windows.
@@ -702,6 +718,7 @@ function emmanuel_init()
         end
     end
 
+  if packer_plugins and packer_plugins["lualine"] then
     require('lualine').setup {
         options = { 
             disabled_filetypes = {
@@ -751,11 +768,8 @@ function emmanuel_init()
             },
         },
     }
-    -- END lualine
-
-    -- this should be covered by lua/doom/extras/autocmds/init.lua but somehow
-    -- I must add this here too.
-    vim.cmd("au BufWinEnter,BufWritePost * lua require('lint').try_lint()")
+  end 
+  -- END lualine
 
 -- require("lspconfig")["null-ls"].setup({
 --   -- add to a specific server's on_attach,
@@ -773,40 +787,48 @@ function emmanuel_init()
     vim.api.nvim_set_keymap('n', 'gCC', '<cmd>lua toggle_comment_custom_commentstring_curline()<cr>', { noremap = true, silent = true })
     vim.api.nvim_set_keymap('v', 'gC', ':<C-u>lua toggle_comment_custom_commentstring_sel()<cr>', { noremap = true, silent = true })
 
-  -- https://github.com/mfussenegger/nvim-lint/pull/196/files
-  require('lint').linters.credo = {
-      cmd = 'mix',
-      stdin = true,
-      args = { 'credo', 'list', '--format=oneline', '--read-from-stdin' },
-      stream = 'stdout',
-      ignore_exitcode = true, -- credo only returns 0 if there are no errors
-      parser = require('lint.parser').from_errorformat('[%t] %. %f:%l:%c %m, [%t] %. %f:%l %m')
-  }
+  if packer_plugins and packer_plugins["lint"] then
+    -- this should be covered by lua/doom/extras/autocmds/init.lua but somehow
+    -- I must add this here too.
+    vim.cmd("au BufWinEnter,BufWritePost * lua require('lint').try_lint()")
 
-  require("lint").linters_by_ft = {
-    sh = {"shellcheck"},
-    elixir = {"credo"},
-  }
+    -- https://github.com/mfussenegger/nvim-lint/pull/196/files
+    require('lint').linters.credo = {
+        cmd = 'mix',
+        stdin = true,
+        args = { 'credo', 'list', '--format=oneline', '--read-from-stdin' },
+        stream = 'stdout',
+        ignore_exitcode = true, -- credo only returns 0 if there are no errors
+        parser = require('lint.parser').from_errorformat('[%t] %. %f:%l:%c %m, [%t] %. %f:%l %m')
+    }
 
-  require"gitlinker".setup({
-      opts = {
-          action_callback = function(url)
-              local human_readable_url = ''
-              if vim.fn.mode() == 'n' then
-                  human_readable_url = _G.get_file_line()
-              else
-                  human_readable_url = _G.get_file_line_sel()
-              end
+    require("lint").linters_by_ft = {
+        sh = {"shellcheck"},
+        elixir = {"credo"},
+    }
+  end
 
-              vim.api.nvim_command('let @+ = \'' .. human_readable_url .. ' ' .. url .. '\'')
-          end,
-      },
-      callbacks = {
-          ["gitlab.*"] = require"gitlinker.hosts".get_gitlab_type_url
-      },
-      -- default mapping to call url generation with action_callback
-      mappings = "<leader>gy"
-  })
+  if packer_plugins and packer_plugins["gitlinker"] then
+      require"gitlinker".setup({
+          opts = {
+              action_callback = function(url)
+                  local human_readable_url = ''
+                  if vim.fn.mode() == 'n' then
+                      human_readable_url = _G.get_file_line()
+                  else
+                      human_readable_url = _G.get_file_line_sel()
+                  end
+
+                  vim.api.nvim_command('let @+ = \'' .. human_readable_url .. ' ' .. url .. '\'')
+              end,
+          },
+          callbacks = {
+              ["gitlab.*"] = require"gitlinker.hosts".get_gitlab_type_url
+          },
+          -- default mapping to call url generation with action_callback
+          mappings = "<leader>gy"
+      })
+  end
 
   emmanuel_job_specific()
 end
