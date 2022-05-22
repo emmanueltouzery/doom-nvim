@@ -718,7 +718,7 @@ function emmanuel_init()
         end
     end
 
-  if packer_plugins and packer_plugins["lualine"] then
+  if packer_plugins and packer_plugins["lualine.nvim"] then
     require('lualine').setup {
         options = { 
             disabled_filetypes = {
