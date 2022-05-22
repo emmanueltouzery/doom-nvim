@@ -193,7 +193,14 @@ vim.g.nvim_tree_git_hl = 1 -- 0 by default, will enable file highlight for git a
                    { key = ".",                            action = "run_file_command" }
                }
            }
-       }
+       },
+       actions = {
+           open_file = {
+               window_picker = {
+                   chars = '234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+               }
+           }
+       },
 
   --   view = {
   --     -- width of the window, can be either a number (columns) or a string in `%`
