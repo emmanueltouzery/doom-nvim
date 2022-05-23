@@ -288,6 +288,10 @@ end
 function emmanuel_init()
     vim.diagnostic.config({
         virtual_text = false,
+        float = {
+            source = true,
+            border = 'single',
+        },
     })
 
     vim.cmd("command -nargs=? H help <args> | lua open_in_parent()")
