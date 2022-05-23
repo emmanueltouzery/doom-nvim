@@ -49,12 +49,13 @@ M.plugins = {
       vim.g.markify_info_text = ""
       vim.g.markify_info_texthl = "Todo"
     end},
-    {'jose-elias-alvarez/null-ls.nvim', commit='09efad6fcd3ba2394bc456a70ce47fac68793a6d', config = function()
+    {'jose-elias-alvarez/null-ls.nvim', commit='5717fb76c7553532ac3d69e79e93fe2f2ed1dc0b', config = function()
 
 			require("null-ls").setup({
     		sources = {
         	-- require("null-ls").builtins.formatting.stylua,
         	require("null-ls").builtins.diagnostics.eslint,
+        	require("null-ls").builtins.diagnostics.credo,
         	-- require("null-ls").builtins.completion.spell,
         	-- null_ls.builtins.diagnostics.credo,
         	-- null_ls.builtins.diagnostics.shellcheck,

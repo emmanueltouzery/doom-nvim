@@ -374,23 +374,6 @@ config.config = {
     lsp_info = "",
     lsp_virtual_text = " ",
 
-    -- Set your linters for the programming languages that you use,
-    -- see https://github.com/mfussenegger/nvim-lint#available-linters
-    linters = {
-      c = {},
-      cpp = {},
-      css = {},
-      html = {},
-      javascript = {},
-      lua = {},
-      markdown = {},
-      nix = {},
-      python = {},
-      ruby = {},
-      sh = {},
-      typescript = {},
-    },
-
     -- Set your dashboard custom colors below
     -- @default = doom emacs' default dashboard colors
     dashboard_custom_colors = {

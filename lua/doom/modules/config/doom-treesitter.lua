@@ -20,7 +20,7 @@ return function()
         -- for me on 0.5.1
         lang = lang:gsub("%s+%+lsp(%(%a+%))", ""):gsub("%s+%+lsp", ""):gsub("%s+%+debug", ""):gsub("typescript", ""):gsub("norg", ""):gsub("%s+", "")
         if lang ~= "" then
-            print ("installing for " .. lang)
+            -- print ("installing for " .. lang)
           table.insert(langs, lang)
         end
       end

@@ -527,16 +527,6 @@ packer.startup(function(use)
     cmd = { "Format", "FormatWrite" },
   })
 
-  -- Linting
-  local disabled_linter = is_plugin_disabled("linter")
-  use({
-    "mfussenegger/nvim-lint",
-    commit = pin_commit("c3c8a247fda421b0db1f2cbf50ab4340ba0ffc61"),
-    config = require("doom.modules.config.doom-lint"),
-    disable = disabled_linter,
-    module = "lint",
-  })
-
   -- Indent Lines
   local disabled_indent_lines = is_plugin_disabled("indentlines")
   use({

@@ -286,6 +286,10 @@ function _G.open_in_parent()
 end
 
 function emmanuel_init()
+    vim.diagnostic.config({
+        virtual_text = false,
+    })
+
     vim.cmd("command -nargs=? H help <args> | lua open_in_parent()")
 
     -- workaround for "Read errors" on C-g when opening ts/tsx files
@@ -786,27 +790,6 @@ function emmanuel_init()
     -- https://github.com/b3nj5m1n/kommentary/issues/11
     vim.api.nvim_set_keymap('n', 'gCC', '<cmd>lua toggle_comment_custom_commentstring_curline()<cr>', { noremap = true, silent = true })
     vim.api.nvim_set_keymap('v', 'gC', ':<C-u>lua toggle_comment_custom_commentstring_sel()<cr>', { noremap = true, silent = true })
-
-  if packer_plugins and packer_plugins["nvim-lint"] then
-    -- this should be covered by lua/doom/extras/autocmds/init.lua but somehow
-    -- I must add this here too.
-    vim.cmd("au BufWinEnter,BufWritePost * lua require('lint').try_lint()")
-
-    -- https://github.com/mfussenegger/nvim-lint/pull/196/files
-    require('lint').linters.credo = {
-        cmd = 'mix',
-        stdin = true,
-        args = { 'credo', 'list', '--format=oneline', '--read-from-stdin' },
-        stream = 'stdout',
-        ignore_exitcode = true, -- credo only returns 0 if there are no errors
-        parser = require('lint.parser').from_errorformat('[%t] %. %f:%l:%c %m, [%t] %. %f:%l %m')
-    }
-
-    require("lint").linters_by_ft = {
-        sh = {"shellcheck"},
-        elixir = {"credo"},
-    }
-  end
 
   if packer_plugins and packer_plugins["gitlinker.nvim"] then
       require"gitlinker".setup({

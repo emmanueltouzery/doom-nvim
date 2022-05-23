@@ -1198,8 +1198,8 @@ mappings.map(
   ":lua copy_file_line_sel()<cr>",
   opts,
   "Editor",
-  "Copy line and line number",
-  "Copy line and line number"
+  "Copy line and line number (sel)",
+  "Copy line and line number (sel)"
 )
 mappings.map(
   "n",
