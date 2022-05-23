@@ -631,7 +631,7 @@ function emmanuel_init()
 
     local function project()
         -- return ' ' .. vim.fn.getcwd():match("[^/]+$");
-        return vim.fn.getcwd():match("[^/]+$");
+        return vim.fn.getcwd(vim.fn.winnr()):match("[^/]+$");
     end
 
     function _G.toggle_comment_custom_commentstring_curline()
@@ -673,7 +673,7 @@ function emmanuel_init()
     -- windows. instead of showing the relative path in the module, it
     -- shows the relative path from the home dir... do it by hand.
     local function inactiveRelativePath()
-        return vim.fn.expand('%:p'):gsub(escape_pattern(vim.fn.getcwd()) .. "/", "")
+        return vim.fn.expand('%:p'):gsub(escape_pattern(vim.fn.getcwd(vim.fn.winnr())) .. "/", "")
     end
 
     local function scroll_indicator()
