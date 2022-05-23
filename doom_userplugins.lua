@@ -88,7 +88,12 @@ M.plugins = {
       require"fidget".setup{}
   end},
   {'stevearc/dressing.nvim', commit='55e4ceae81d9169f46ea4452ce6e8c58cca00651', config=function()
-		require('dressing').setup({})
+		require('dressing').setup({
+			input = {
+				-- ESC won't close the modal, ability to use vim keys
+				insert_only = false,
+			}
+		})
   end}
 
     -- 'j-hui/fidget.nvim',
