@@ -308,7 +308,7 @@ function emmanuel_init()
     }
   end
 
-  if packer_plugins and packer_plugins["todo-comments"] then
+  if packer_plugins and packer_plugins["todo-comments.nvim"] then
     require("todo-comments").setup {
         highlight = {
             pattern = {[[\s*\/\/.*<(KEYWORDS)\s*]], [[\s*--.*<(KEYWORDS)\s*]], [[\s*#.*<(KEYWORDS)\s*]]},
@@ -316,7 +316,7 @@ function emmanuel_init()
     }
   end
 
-  if packer_plugins and packer_plugins["lightspeed"] then
+  if packer_plugins and packer_plugins["lightspeed.nvim"] then
     require'lightspeed'.setup {
         ignore_case = true,
     }
@@ -329,7 +329,7 @@ function emmanuel_init()
   end
     -- require('galaxyline').inactive_window_shortline = false
 
-  if packer_plugins and packer_plugins["diffview"] then
+  if packer_plugins and packer_plugins["diffview.nvim"] then
     local cb = require'diffview.config'.diffview_callback
     require('diffview').setup {
         -- had to copy the entire diffview keybindings only to
@@ -403,7 +403,7 @@ function emmanuel_init()
     require('diffview').init()
   end
 
-  if packer_plugins and packer_plugins["telescope"] then
+  if packer_plugins and packer_plugins["telescope.nvim"] then
     require("telescope").setup {
         pickers = {
             buffers = {
@@ -482,7 +482,7 @@ function emmanuel_init()
     vim.cmd("nmap <expr> da &diff? ':lua diffget_and_keep_after()<cr>' : 'da'")
 
     -- formatter, mhartington/formatter.nvim START
-  if packer_plugins and packer_plugins["formatter"] then
+  if packer_plugins and packer_plugins["formatter.nvim"] then
     require('formatter').setup({
         filetype = {
             rust = {
@@ -787,7 +787,7 @@ function emmanuel_init()
     vim.api.nvim_set_keymap('n', 'gCC', '<cmd>lua toggle_comment_custom_commentstring_curline()<cr>', { noremap = true, silent = true })
     vim.api.nvim_set_keymap('v', 'gC', ':<C-u>lua toggle_comment_custom_commentstring_sel()<cr>', { noremap = true, silent = true })
 
-  if packer_plugins and packer_plugins["lint"] then
+  if packer_plugins and packer_plugins["nvim-lint"] then
     -- this should be covered by lua/doom/extras/autocmds/init.lua but somehow
     -- I must add this here too.
     vim.cmd("au BufWinEnter,BufWritePost * lua require('lint').try_lint()")
@@ -808,7 +808,7 @@ function emmanuel_init()
     }
   end
 
-  if packer_plugins and packer_plugins["gitlinker"] then
+  if packer_plugins and packer_plugins["gitlinker.nvim"] then
       require"gitlinker".setup({
           opts = {
               action_callback = function(url)
