@@ -289,6 +289,7 @@ function emmanuel_init()
     vim.diagnostic.config({
         virtual_text = false,
         float = {
+            severity_sort = true,
             source = true,
             border = 'single',
         },
