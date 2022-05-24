@@ -494,16 +494,16 @@ function emmanuel_init()
   if packer_plugins and packer_plugins["formatter.nvim"] then
     require('formatter').setup({
         filetype = {
-            rust = {
-                -- Rustfmt
-                function()
-                    return {
-                        exe = "rustfmt",
-                        args = {"--emit=stdout"},
-                        stdin = true
-                    }
-                end
-            },
+            -- rust = {
+            --     -- Rustfmt
+            --     function()
+            --         return {
+            --             exe = "rustfmt",
+            --             args = {"--emit=stdout"},
+            --             stdin = true
+            --         }
+            --     end
+            -- },
             json = {
                 function()
                     return {
@@ -593,13 +593,13 @@ function emmanuel_init()
     vim.api.nvim_exec([[
     augroup FormatAutogroup
     autocmd!
-    autocmd BufWritePost *.rs lua format_safe()
     autocmd BufWritePost *.js lua format_safe()
     autocmd BufWritePost *.jsx lua format_safe()
     autocmd BufWritePost *.ts lua format_safe()
     autocmd BufWritePost *.tsx lua format_safe()
     augroup END
     ]], true)
+    -- autocmd BufWritePost *.rs lua format_safe()
     -- formatter END
     
     -- for instance nginx configuration files
@@ -789,8 +789,9 @@ function emmanuel_init()
 --       end
 --   end
 -- })
-    vim.cmd [[autocmd BufWritePre *.ex lua vim.lsp.buf.formatting_seq_sync()]]
-    vim.cmd [[autocmd BufWritePre *.exs lua vim.lsp.buf.formatting_seq_sync()]]
+    vim.cmd [[autocmd BufWritePre *.ex lua vim.lsp.buf.formatting_sync()]]
+    vim.cmd [[autocmd BufWritePre *.exs lua vim.lsp.buf.formatting_sync()]]
+    vim.cmd [[autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync()]]
 
     -- https://github.com/b3nj5m1n/kommentary/issues/11
     vim.api.nvim_set_keymap('n', 'gCC', '<cmd>lua toggle_comment_custom_commentstring_curline()<cr>', { noremap = true, silent = true })
