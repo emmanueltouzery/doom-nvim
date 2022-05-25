@@ -490,118 +490,6 @@ function emmanuel_init()
     vim.cmd("nmap <expr> db &diff? ':lua diffget_and_keep_before()<cr>' : 'db'")
     vim.cmd("nmap <expr> da &diff? ':lua diffget_and_keep_after()<cr>' : 'da'")
 
-    -- formatter, mhartington/formatter.nvim START
-  if packer_plugins and packer_plugins["formatter.nvim"] then
-    require('formatter').setup({
-        filetype = {
-            -- rust = {
-            --     -- Rustfmt
-            --     function()
-            --         return {
-            --             exe = "rustfmt",
-            --             args = {"--emit=stdout"},
-            --             stdin = true
-            --         }
-            --     end
-            -- },
-            json = {
-                function()
-                    return {
-                        exe = "jq",
-                        stdin = true
-                    }
-                end
-            },
-            javascript = {
-                -- prettier
-                function()
-                    return {
-                        exe = "~/.asdf/shims/prettier",
-                        args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), '--single-quote'},
-                        stdin = true
-                    }
-                end
-            },
-            javascriptreact = {
-                -- prettier
-                function()
-                    return {
-                        exe = "~/.asdf/shims/prettier",
-                        args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), '--single-quote'},
-                        stdin = true
-                    }
-                end
-            },
-            typescript = {
-                -- prettier
-                function()
-                    return {
-                        exe = "~/.asdf/shims/prettier",
-                        args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), '--single-quote'},
-                        stdin = true
-                    }
-                end
-            },
-            typescriptreact = {
-                -- prettier
-                function()
-                    return {
-                        exe = "~/.asdf/shims/prettier",
-                        args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), '--single-quote'},
-                        stdin = true
-                    }
-                end
-            },
-        }
-    })
-  end
-
-    -- absolutely ABOMINABLE HACK to avoid losing cursor position when reindent
-    -- occurs and i have the same file in multiple windows.
-    -- https://github.com/mhartington/formatter.nvim/issues/22
-    -- I believe switching to null-ls for reindentation should fix this
-    -- properly, but I didn't manage to switch for prettier for now.
-
-    function _G.save_scrollpos_if_file(fname, winnr)
-        if vim.fn.expand('%:p') == fname and vim.fn.winnr() ~= winnr then
-            local p = vim.fn.getcurpos()
-            if p[2] ~= 1 then
-                vim.w.scroll_save_pos = vim.fn.winsaveview()
-            end
-        end
-    end
-
-    function _G.restore_scrollpos_if_file(fname, winnr)
-        if vim.fn.expand('%:p') == fname and vim.fn.winnr() ~= winnr then
-            vim.fn.winrestview(vim.w.scroll_save_pos)
-        end
-    end
-    
-    function _G.format_safe()
-        local fname=vim.fn.expand('%:p')
-        local winnr=vim.fn.winnr()
-        vim.cmd('windo lua save_scrollpos_if_file("' .. fname .. '", ' .. winnr .. ')')
-        vim.cmd(winnr .. 'wincmd w')
-        vim.cmd("FormatWrite")
-        vim.cmd('windo lua restore_scrollpos_if_file("' .. fname .. '", ' .. winnr .. ')')
-        vim.cmd(winnr .. 'wincmd w')
-    end
-
-    -- end HACK. Without the hack, put FormatWrite instead of 'lua format_safe'
-    -- in the next block.
-
-    vim.api.nvim_exec([[
-    augroup FormatAutogroup
-    autocmd!
-    autocmd BufWritePost *.js lua format_safe()
-    autocmd BufWritePost *.jsx lua format_safe()
-    autocmd BufWritePost *.ts lua format_safe()
-    autocmd BufWritePost *.tsx lua format_safe()
-    augroup END
-    ]], true)
-    -- autocmd BufWritePost *.rs lua format_safe()
-    -- formatter END
-    
     -- for instance nginx configuration files
     vim.cmd('autocmd BufNewFile,BufRead *.conf set syntax=conf')
     vim.cmd('autocmd BufNewFile,BufRead *.conf.template set syntax=conf')
@@ -792,6 +680,8 @@ function emmanuel_init()
     vim.cmd [[autocmd BufWritePre *.ex lua vim.lsp.buf.formatting_sync()]]
     vim.cmd [[autocmd BufWritePre *.exs lua vim.lsp.buf.formatting_sync()]]
     vim.cmd [[autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync()]]
+    vim.cmd [[autocmd BufWritePre *.tsx lua vim.lsp.buf.formatting_sync()]]
+    vim.cmd [[autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync()]]
 
     -- https://github.com/b3nj5m1n/kommentary/issues/11
     vim.api.nvim_set_keymap('n', 'gCC', '<cmd>lua toggle_comment_custom_commentstring_curline()<cr>', { noremap = true, silent = true })

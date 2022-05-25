@@ -160,15 +160,15 @@ mappings.map(
   "prev_buffer",
   "Goto previous buffer"
 )
-mappings.map(
-  "n",
-  "<leader>bf",
-  "<cmd>FormatWrite<CR>",
-  opts,
-  "Buffer",
-  "format_buffer",
-  "Format buffer"
-)
+-- mappings.map(
+--   "n",
+--   "<leader>bf",
+--   "<cmd>FormatWrite<CR>",
+--   opts,
+--   "Buffer",
+--   "format_buffer",
+--   "Format buffer"
+-- )
 
 -- doom
 mappings.map(
@@ -1060,7 +1060,7 @@ mappings.map(
 mappings.map(
   "n",
   "<leader>cf",
-  ":Format<cr>",
+  ":lua vim.lsp.buf.formatting_sync()<cr>",
   opts,
   "Editor",
   "code_format",

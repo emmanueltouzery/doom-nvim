@@ -59,7 +59,7 @@ M.plugins = {
         	-- require("null-ls").builtins.completion.spell,
         	-- null_ls.builtins.diagnostics.credo,
         	-- null_ls.builtins.diagnostics.shellcheck,
-        	-- null_ls.builtins.formatting.prettier,
+        	require("null-ls").builtins.formatting.prettier,
         	-- null_ls.builtins.formatting.rustfmt,
         	-- null_ls.builtins.formatting.mix,
         	-- null_ls.builtins.formatting.eslint,

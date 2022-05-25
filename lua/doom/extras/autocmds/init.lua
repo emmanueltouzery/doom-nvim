@@ -123,16 +123,6 @@ if config.doom.highlight_yank then
   })
 end
 
--- Format on save
--- NOTE: Requires formatter to be enabled!
-if config.doom.fmt_on_save then
-  table.insert(autocmds["doom_core"], {
-    "BufWritePre",
-    "*",
-    "FormatWrite",
-  })
-end
-
 -- Preserve last editing position
 if config.doom.preserve_edit_pos then
   table.insert(autocmds["doom_core"], {

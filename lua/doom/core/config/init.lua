@@ -38,12 +38,6 @@ config.config = {
     -- @default = false
     autosave = false,
 
-    -- Format on save
-    -- false : Disable format on save
-    -- true  : Enable format on save
-    -- @default = false
-    fmt_on_save = false,
-
     -- Disable Vim macros
     -- false : Enable Vim macros
     -- true  : Disable Vim macros

@@ -454,10 +454,26 @@ packer.startup(function(use)
   -- Manage Language serverss with ease.
   use({
     "williamboman/nvim-lsp-installer",
-    commit = pin_commit("bcce5db53b966e2dbd97fc8d1bbfa7db4a405f13"),
-    config = require("doom.modules.config.doom-lsp-installer"),
-    disable = disabled_lsp,
-  })
+    commit = pin_commit("b70099151c401014b875e3a375c751714fdd4144"),
+    -- config = require("doom.modules.config.doom-lsp-installer"),
+    config = function()
+        require("nvim-lsp-installer").setup {
+            automatic_installation = true,
+        }
+        local lspconfig = require("lspconfig")
+
+        lspconfig.tsserver.setup {
+            on_attach = function(client)
+                client.resolved_capabilities.document_formatting = false
+                client.resolved_capabilities.document_range_formatting = false
+            end,
+        }
+        lspconfig.rust_analyzer.setup {}
+        lspconfig.elixirls.setup {}
+        lspconfig.bashls.setup {}
+    end,
+    after = "nvim-lspconfig",
+})
 
   -- Show function signature when you type
   use({
@@ -514,17 +530,6 @@ packer.startup(function(use)
     commit = pin_commit("0290c93c148a14eab2b661a1933003d86436f6ec"),
     disable = disabled_suda,
     cmd = { "SudaRead", "SudaWrite" },
-  })
-
-  -- File formatting
-  -- can be disabled to use your own file formatter
-  local disabled_formatter = is_plugin_disabled("formatter")
-  use({
-    "lukas-reineke/format.nvim",
-    commit = pin_commit("c46ab8b46100e26fce4d6ce69a94d4cea8b9f4d7"),
-    config = require("doom.modules.config.doom-format"),
-    disable = disabled_formatter,
-    cmd = { "Format", "FormatWrite" },
   })
 
   -- Indent Lines
