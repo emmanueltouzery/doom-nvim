@@ -49,8 +49,7 @@ M.plugins = {
       vim.g.markify_info_text = ""
       vim.g.markify_info_texthl = "Todo"
     end},
-    -- {'jose-elias-alvarez/null-ls.nvim', commit='5717fb76c7553532ac3d69e79e93fe2f2ed1dc0b', config = function()
-    {'emmanueltouzery/null-ls.nvim', commit='4d6b615821accbd754c81e8d37eb755085cae0e1', config = function()
+    {'jose-elias-alvarez/null-ls.nvim', commit='af192263b33764fa91d3fa578abd9e674a1984c7', config = function()
 
 			require("null-ls").setup({
     		sources = {
