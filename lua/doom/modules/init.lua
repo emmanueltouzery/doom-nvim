@@ -171,18 +171,6 @@ packer.startup(function(use)
     disable = disabled_ranger,
   })
 
-  -- Statusline
-  -- can be disabled to use your own statusline
-  local disabled_statusline = is_plugin_disabled("statusline")
-  use({
-    -- "NTBBloodbath/galaxyline.nvim",
-    -- commit = pin_commit("7b812cfddfcac7d9031e2f8e03f2b71fe8b2558d"),
-    "emmanueltouzery/galaxyline.nvim",
-    branch = "doom-branch-patched",
-    config = require("doom.modules.config.doom-eviline"),
-    disable = disabled_statusline,
-  })
-
   -- Tabline
   -- can be disabled to use your own tabline
   local disabled_tabline = is_plugin_disabled("tabline")
